@@ -1,0 +1,45 @@
+body {
+  background-color: #eee;
+  background-image: url(keithmoon.jpg);
+  background-size: cover;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 200px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drum {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 0;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0 2px;
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
+  border: solid 2px black;
+  border-radius: 2px;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.drum:hover {
+  transform: scale(1.1);
+  border-color: yellow;
+}
+
+.letter {
+  text-align: center;
+  font-size: 2rem;
+  width: 100%;
+}
+
+.drum label {
+  color: yellow;
+  font-size: 0.5rem;
+}
