@@ -1,21 +1,27 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
   background-image: url(keithmoon.jpg);
   background-size: cover;
 }
 
 .keys-wrapper {
-  max-width: 800px;
-  margin: 200px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.drum {
+.key {
   display: flex;
   flex-wrap: wrap;
-  flex-basis: 0;
-  flex-grow: 1;
+  flex-basis: 70px;
   justify-content: center;
   margin: 0 2px;
   padding: 10px;
@@ -28,22 +34,22 @@ body {
   transition: all .1s;
 }
 
-.drum:hover {
+.key:hover {
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-.drum.active {
-  transform: scale(1.1);
+.key.js-active {
+  transform: scale(1.3);
   border-color: yellow;
 }
 
-.letter {
+.key-letter {
   text-align: center;
   font-size: 2rem;
   width: 100%;
 }
 
-.drum label {
+.key-label {
   color: yellow;
   font-size: 0.5rem;
 }
