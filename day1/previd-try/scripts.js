@@ -47,7 +47,28 @@
       wavFile: "tink"
     }
   };
+  
   var drumsHTML = '';
+  for (key in keys) {
+    drumsHTML += '<div class="drum drum-key-' + keys[key]['letter'] + '">' +
+        '<div class="letter">' + keys[key]['letter'] + '</div>' +
+        '<label>' + keys[key]['label'] + '</label>' +
+        '</div>';
+  }
+  document.querySelector('.keys-wrapper').innerHTML = drumsHTML;
+
+  drumsList = document.querySelectorAll('.drum');
+
+  for (key in keys) {
+    var drumSelector = document.querySelector('.drum-key-' + keys[key]['letter']);
+    var drumSoundFile = 'sounds/' + keys[key]['wavFile'] + '.wav';
+
+    drumSelector.onclick = (function(drumSoundFile, drumSelector) {
+      return function() {
+        playSound(drumSoundFile, drumSelector);
+      }
+    })(drumSoundFile, drumSelector);
+  }
 
   document.onkeydown = function(e) {
     if (keys.hasOwnProperty(e.keyCode)) {
@@ -73,13 +94,5 @@
     }, 100);
   }
 
-  for (key in keys) {
-    drumsHTML += '<div data-sound="' + keys[key]['wavFile'] + '" class="drum drum-key-' + keys[key]['letter'] + '">' +
-      '<div class="letter">' + keys[key]['letter'] + '</div>' +
-      '<label>' + keys[key]['label'] + '</label>' +
-      '</div>';
-  }
-
-  document.querySelector('.keys-wrapper').innerHTML = drumsHTML;
 
 })();
