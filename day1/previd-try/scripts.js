@@ -47,6 +47,7 @@
       wavFile: "tink"
     }
   };
+  var drumsHTML = '';
 
   document.onkeydown = function(e) {
     if (keys.hasOwnProperty(e.keyCode)) {
@@ -71,5 +72,14 @@
       drumSelector.classList.remove('active');
     }, 100);
   }
+
+  for (key in keys) {
+    drumsHTML += '<div data-sound="' + keys[key]['wavFile'] + '" class="drum drum-key-' + keys[key]['letter'] + '">' +
+      '<div class="letter">' + keys[key]['letter'] + '</div>' +
+      '<label>' + keys[key]['label'] + '</label>' +
+      '</div>';
+  }
+
+  document.querySelector('.keys-wrapper').innerHTML = drumsHTML;
 
 })();

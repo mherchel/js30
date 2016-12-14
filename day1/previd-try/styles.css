@@ -4,7 +4,7 @@ body {
   background-size: cover;
 }
 
-.wrapper {
+.keys-wrapper {
   max-width: 800px;
   margin: 200px auto;
   display: flex;
