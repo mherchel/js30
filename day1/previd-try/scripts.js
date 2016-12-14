@@ -52,9 +52,13 @@
 
     if (typeof drumSound !== 'undefined') {
       drumSound.play();
+      var drum = document.querySelector('.drum-key-' + key);
+      drum.classList.add('active');
+      window.setTimeout(function() {
+        drum.classList.remove('active');
+      }, 100);
       console.log(key);
     }
   }
-
 
 })();

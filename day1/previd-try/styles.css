@@ -28,7 +28,8 @@ body {
   transition: all .1s;
 }
 
-.drum:hover {
+.drum:hover,
+.drum.active {
   transform: scale(1.1);
   border-color: yellow;
 }
