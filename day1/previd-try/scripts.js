@@ -1,64 +1,75 @@
 (function() {
 
+  var keys = {
+    65: {
+      letter: "a",
+      label: "Clap",
+      wavFile: "clap"
+    },
+    83: {
+      letter: "s",
+      label: "Hihat",
+      wavFile: "hihat"
+    },
+    68: {
+      letter: "d",
+      label: "Kick",
+      wavFile: "kick"
+    },
+    70: {
+      letter: "f",
+      label: "Openhat",
+      wavFile: "openhat"
+    },
+    71: {
+      letter: "g",
+      label: "Boom",
+      wavFile: "boom"
+    },
+    72: {
+      letter: "h",
+      label: "Ride",
+      wavFile: "ride"
+    },
+    74: {
+      letter: "j",
+      label: "Snare",
+      wavFile: "snare"
+    },
+    75: {
+      letter: "k",
+      label: "Tom",
+      wavFile: "tom"
+    },
+    76: {
+      letter:"l",
+      label: "Tink",
+      wavFile: "tink"
+    }
+  };
+
   document.onkeydown = function(e) {
-    var key;
-    switch(e.keyCode) {
+    if (keys.hasOwnProperty(e.keyCode)) {
+      var drumLetter = keys[e.keyCode]['letter'];
+      var drumLabel = keys[e.keyCode]['label'];
+      var drumSoundFile = 'sounds/' + keys[e.keyCode]['wavFile'] + '.wav';
+      var drumSelector = document.querySelector('.drum-key-' + drumLetter);
 
-      case 65:
-        key = 'a';
-        var drumSound = new Audio('sounds/clap.wav')
-        break;
-
-      case 83:
-        key = 's';
-        var drumSound = new Audio('sounds/hihat.wav')
-        break;
-
-      case 68:
-        key = 'd';
-        var drumSound = new Audio('sounds/kick.wav')
-        break;
-
-      case 70:
-        key = 'f';
-        var drumSound = new Audio('sounds/openhat.wav')
-        break;
-
-      case 71:
-        key = 'g';
-        var drumSound = new Audio('sounds/boom.wav')
-        break;
-
-      case 72:
-        key = 'h';
-        var drumSound = new Audio('sounds/ride.wav')
-        break;
-
-      case 74:
-        key = 'j';
-        var drumSound = new Audio('sounds/snare.wav')
-        break;
-
-      case 75:
-        key = 'k';
-        var drumSound = new Audio('sounds/tom.wav')
-        break;
-
-      case 76:
-        key = 'l';
-        var drumSound = new Audio('sounds/tink.wav')
-        break;
+      playSound(drumSoundFile, drumSelector);
     }
 
-    if (typeof drumSound !== 'undefined') {
-      drumSound.play();
-      var drum = document.querySelector('.drum-key-' + key);
-      drum.classList.add('active');
-      window.setTimeout(function() {
-        drum.classList.remove('active');
-      }, 100);
-      console.log(key);
-    }
+    keyLog = (typeof drumLetter !== 'undefined') ? drumLetter + ' ' + e.keyCode + ' ' + drumLabel : e.keyCode;
+    console.log(keyLog);
+  }
+
+  function playSound(drumSoundFile, drumSelector) {
+    var drumSound = new Audio(drumSoundFile);
+    drumSound.play();
+    drumSelector.classList.add('active');
+
+    window.setTimeout(function() {
+      drumSelector.classList.remove('active');
+    }, 100);
   }
 
 })();
