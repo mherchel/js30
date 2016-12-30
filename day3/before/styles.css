@@ -1,0 +1,29 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:root {
+  --blur-radius: 0;
+  --spacing: 0;
+}
+
+.range-wrapper {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-wrapper {
+  width: 500px;
+  margin: 50px auto;
+  background: #eee;
+}
+
+img {
+  display: block;
+  position: relative;
+  top: var(--spacing);
+  left: calc(var(--spacing) * 2);
+  filter: blur(var(--blur-radius));
+}
