@@ -13,7 +13,8 @@
     // Update the degrees to rotate
     var degHour = hour / 12 * 360;
     var degMinute = minute / 60 * 360;
-    var degSecond = second / 60 * 360;
+    var degSecond = second / 60 * 360 ;
+    // var degSecond = second / 60 * 360;
 
     // Apply rotation transforms to the DOM
     handHour.style.transform = 'rotate(' + degHour + 'deg)';
