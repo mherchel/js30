@@ -5,6 +5,11 @@
 :root {
   --blur-radius: 0;
   --spacing: 0;
+  --color: #003366;
+}
+
+body {
+  background-color: var(--color);
 }
 
 .range-wrapper {
