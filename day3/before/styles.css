@@ -24,6 +24,6 @@ img {
   display: block;
   position: relative;
   top: var(--spacing);
-  left: calc(var(--spacing) * 2);
+  left: calc(var(--spacing) * 5);
   filter: blur(var(--blur-radius));
 }
