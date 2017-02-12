@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 5</title>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+    width: 100%;
+  }
+
+  li {
+    width: 100%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    flex-basis: 0;
+    flex-grow: 1;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+  }
+
+  li:not(:last-child) {
+    border-right: 2px solid white;
+  }
+
+  li:hover {
+    filter: contrast(200%);
+  }
+
+  li.active {
+    flex-basis: 30%;
+  }
+
+  h2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%;)
+    margin: 0;
+    text-align: center;
+    color: yellow;
+  }
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%
+  }
+
+  </style>
+  <script async>
+  (function() {
+    window.onload = function() {
+      var items = document.querySelectorAll('li');
+      document.addEventListener('click', function(e){
+        var el = e.target;
+        while (!el.matches('li')) {
+          el = el.parentNode;
+        };
+        el.classList.toggle('active');
+
+        document.querySelectorAll('li').forEach(function(li) {
+          if (!li.isSameNode(el)) {
+            li.classList.remove('active');
+          }
+        });
+      });
+    }
+  })();
+
+  </script>
+</head>
+<body>
+
+<ul>
+  <li>
+    <img src="https://placebear.com/500/1200" alt="">
+    <h2>One</h2>
+  </li>
+  <li>
+    <img src="https://placebear.com/500/1210" alt="">
+    <h2>Two</h2>
+  </li>
+  <li>
+    <img src="https://placebear.com/500/1220" alt="">
+    <h2>Three</h2>
+  </li>
+  <li>
+    <img src="https://placebear.com/510/1200" alt="">
+    <h2>Four</h2>
+  </li>
+  <li>
+    <img src="https://placebear.com/520/1200" alt="">
+    <h2>Five</h2>
+  </li>
+</ul>
+
+</body>
+</html>

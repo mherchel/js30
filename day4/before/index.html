@@ -23,7 +23,7 @@
       { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
       { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
       { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
-      { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+      { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 }, 
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
 
@@ -72,23 +72,82 @@
       return a.year - b.year;
     }
 
-    console.table(inventors)
+    // console.table(inventors)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
 
+    var yearsLived = inventors.reduce(function(a, b) {
+      return (a + (b.passed - b.year));
+    }, 0);
+
+    // console.log(yearsLived);
+
     // 5. Sort the inventors by years lived
+
+    inventors.sort(function(a, b) {
+      // if ((a.passed - a.year) < (b.passed - b.year)) {
+      //   return 1;
+      // }
+      // if ((a.passed - a.year) > (b.passed - b.year)) {
+      //   return -1;
+      // }
+
+      return (b.passed - b.year) - (a.passed - a.year);
+    });
+
+    // console.table(inventors);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    /* Before */
+// var resultElements = document.querySelectorAll('.mw-category li a');
+// var parisBlvds = [];
+// resultElements.forEach(function(element) {
+//   parisBlvds.push(element.textContent);
+// });
+// var deBlvd = parisBlvds.filter(function(item) {
+//     return item.includes('de');
+// });
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    var alpha = people.sort(function(a, b) {
+      firstArray = a.split(', ');
+      secondArray = b.split(', ');
+      return firstArray['0'] > secondArray['0'];
+      if (firstArray['0'] < secondArray['0']) {
+        return -1;
+      }
+      if (firstArray['0'] > secondArray['0']) {
+        return 1;
+      }
+      return 0;
+
+    });
+
+    // const alpha = people.sort(function(lastOne, nextOne) {
+    //   const [aLast, aFirst] = lastOne.split(', ');
+    //   const [bLast, bFirst] = nextOne.split(', ');
+    //   return aLast > bLast ? -1 : 1;
+    // });
+
+    // console.log(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce(function(obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
+
+    console.log(transportation);
 
   </script>
 </body>
