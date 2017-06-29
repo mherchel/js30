@@ -3,21 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>day 6</title>
+  <style>
+
+    input {
+      display: block;
+      margin: 20px auto;
+      font-size: 20px;
+      padding: 20px;
+      border: solid 2px #ccc;
+    }
+  </style>
 </head>
 <body>
-day6
+
+<input type="text">
 
 <script>
-var endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-var citiesObj;
-fetch(endpoint).then(function(response) {
-  citiesObj = response;
-  debugger;
-  console.info('yay');
-}).catch(function(err) {
-  console.error(err);
-});
+(function() {
+  var cities;
+  var endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+  // Get the data.
+  fetch(endpoint)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      processData(data);
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+
+
+    // Do something with the data.
+    function processData(data) {
+      cities = data;
+    }
+
+    document.addEventListener('keyup', function(e) {
+      if (e.target.matches('input[type="text"]')) {
+
+
+        currentList = cities.filter(function(city) {
+          var string = JSON.stringify(city);
+          return string.includes(e.key);
+        });
+        console.log(currentList);
+
+
+
+      }
+    });
+
+})();
 
 </script>
 </body>
