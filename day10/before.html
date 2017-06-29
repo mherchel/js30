@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hold Shift</title>
+  <style>
+  * {
+    font-family: helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+  body {
+    background: #eee;
+  }
+  .container {
+    padding: 0;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 400px;
+  }
+  ul {
+    margin: 10px 0;
+    padding: 0;
+    background: white;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    border-bottom: solid 1px #ccc;
+  }
+  input {
+    margin: 0 10px;
+  }
+  label {
+    font-weight: normal;
+    padding: 10px;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    border-left: solid 1px #ccc;
+  }
+  </style>
+</head>
+<body>
+<div class="container">
+  <p>Hold shift + click to select multiple checkboxes.</p>
+  <button type="button" class="clear-all">Clear all</button>
+  <ul>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+    <li class="list-item"><input type="checkbox"><label for="">This is an item</label></li>
+  </ul>
+</div>
+<script>
+
+// Declare globally so they don't get garbage collected.
+var firstPosition = firstPosition || 0;
+var secondPosition = secondPosition || 0;
+
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.matches('input') && e.target.checked == true) {
+    var allCheckboxes = document.querySelectorAll('li input');
+
+
+    if (e.shiftKey == false) {
+      // Calculate position of this checkbox within the nodelist.
+      allCheckboxes.forEach(function(item, index) {
+        if (item == e.target) {
+          firstPosition = index;
+          return;
+        }
+      });
+    }
+
+    else { // e.shiftKey == true;
+      // Calculate position of this checkbox within the nodelist.
+      allCheckboxes.forEach(function(item, index) {
+        if (item == e.target) {
+          secondPosition = index;
+          return;
+        }
+      });
+
+      checkboxCalc(firstPosition, secondPosition, allCheckboxes);
+    }
+  }
+});
+
+// Clear all button
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.matches('.clear-all')) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"');
+    checkboxes.forEach(function(item, index) {
+      item.checked = false;
+    });
+  }
+});
+
+
+// Function to calculate which checkboxes should be checked.
+function checkboxCalc(firstPosition, secondPosition, nodeList) {
+  if (firstPosition < secondPosition) {
+    nodeList.forEach(function(item, index) {
+      if (index > firstPosition && index < secondPosition) {
+        item.checked = true;
+      }
+    });
+  }
+  else if (secondPosition < firstPosition) {
+    nodeList.forEach(function(item, index) {
+      if (index > secondPosition && index < firstPosition) {
+        item.checked = true;
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>
